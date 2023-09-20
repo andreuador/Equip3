@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario facturación</title>
+</head>
+<body>
+<div id="titol">
+    <h1 align="center">Facturación</h1>
+    
+</div>
+<div id="TipoCliente">
+<h1>Tipo de cliente</h1>
+
+<div id="tipousuario">
+    <input type="radio" id="personafisica" name="drone" value="Persona Física" checked onfocus="cambiaraClient()" />
+    <label for="personafisica">Persona Física</label>
+  </div>
+
+  <div>
+    <input type="radio" id="empresa" name="drone" value="Empresa" onfocus="cambiaraEmpresa()" />
+    <label for="empresa">Empresa</label>
+  </div>
+</div>
+<div id="formulariocliente">
+    <h1>Datos del cliente</h1>
+    <div id="Cliente">
+        <form>
+            <p>Nombre:</p>
+            <input id="nombre" title="Nombre" placeholder="Nombre" pattern="[a-z]{1,15}">
+            <p>Apellidos:</p>
+            <input id="apellidos" title="Apellidos" placeholder="Apellidos" pattern="[a-z]{1,15}">
+            <p>Telefono:</p>
+            <input id="telefono" title="Telefono" placeholder="Telefono" pattern="[0-9]{9}">
+            <p>Email:</p>
+            <input id="email" title="Email" placeholder="Email" required type="email">
+        <div id="direccion">  
+        <p>Dirección</p>
+     <input id="direccion" title="Dirección" placeholder="Dirección" style="width:300px;">
+            <p>Seleccione metodo de pago</p>
+            <select name="Metodo de pago" id="opcionpago">
+                <option value="mastercard">MasterCard</option>
+                <option value="paypal">Paypal</option>
+                <option value="visa">Visa</option>
+            </select>
+            <br><br>
+            <input type="checkbox" id="terminos" value="Acepto Terminos y condiciones">
+            <label>Acepto Terminos y Condiciones</label>
+            <br>
+            <button id="pagar" type="submit" onclick="redireccionar()">Pagar</button>
+        </div> 
+    </div>
+        </form>
+</div>
+
+
+<script>
+    function cambiaraClient(){
+        var formulario=document.getElementById("formulariocliente");
+        formulario.innerHTML="<div id="+"formulariocliente+"+">"+
+    "<h1>Datos del cliente</h1>"+
+    "<div id="+"Cliente"+">"+
+        "<form>"
+            +"<p>Nombre:</p>"+
+            "<input id="+"nombre"+" title="+"Nombre"+" placeholder="+"Nombre"+"   "+"pattern="+"[A-Za-z]+"+"  >"+
+            "<p>Apellidos:</p>"+
+            "<input id="+"apellidos"+" title="+"Apellidos"+" placeholder="+"Apellidos"+"  "+"pattern="+"[A-Za-z]+"+" >"+
+            "<p>Telefono:</p>"+
+            "<input id="+"telefono"+" title="+"Telefono"+" placeholder="+"Telefono"+"  "+"pattern="+"[0-9]{9}"+" >"+
+            "<p>Email:</p>"+
+            "<input id="+"email"+" title="+"Email"+"type="+"email"+" placeholder="+"Email"+">"+
+        "<div id="+"direccion"+">"+  
+        "<p>Dirección</p>"+
+     "<input id="+"direccion"+" title="+"Dirección"+" placeholder="+"Dirección"+" style="+"width:300px;"+">"+
+            "<p>Seleccione metodo de pago</p>"+
+            "<select name="+"Metodo de pago"+" id="+"opcionpago"+">"+
+                "<option value="+"mastercard"+">MasterCard</option>"+
+                "<option value="+"paypal"+">Paypal</option>"+
+                "<option value="+"visa"+">Visa</option>"+
+            "</select>"+
+            "<br><br>"+
+            "<input type="+"checkbox"+" id="+"terminos"+"required"+" value="+"Acepto Terminos y condiciones"+">"+
+            "<label>Acepto Terminos y Condiciones</label>"+
+            "<br>"+
+            "<button id="+"pagar"+" onclick="+"redireccionar()"+" >Pagar</button>"+
+        "</div>"+ 
+    "</div>"+
+        "</form>"+
+"</div>";
+    }
+
+    function cambiaraEmpresa(){
+        var formulario=document.getElementById("formulariocliente");
+        formulario.innerHTML="<div id="+"formularioempresa+"+">"+
+    "<h1>Datos de la empresa</h1>"+
+    "<div id="+"Empresa"+">"+
+        "<form>"
+            +"<p>Nombre:</p>"+
+            "<input id="+"nombre"+" title="+"Nombre"+" placeholder="+"Nombre"+"  "+"pattern="+"[A-Za-z]+"+">"+
+            "<p>Dominio:   (opcional)</p>"+
+            "<input id="+"dominio"+" title="+"Dominio"+" placeholder="+"Dominio"+""+">"+
+            "<p>Telefono:</p>"+
+            "<input id="+"telefono"+" title="+"Telefono"+" placeholder="+"Telefono"+" "+"pattern="+"[0-9]{9}+"+">"+
+            "<p>Email:</p>"+
+            "<input id="+"email"+" title="+"Email"+"type="+"email"+" placeholder="+"Email"+">"+
+        "<div id="+"direccion"+">"+  
+        "<p>Dirección</p>"+
+     "<input id="+"direccion"+" title="+"Dirección"+" placeholder="+"Dirección"+" style="+"width:300px;"+">"+
+            "<p>Seleccione metodo de pago</p>"+
+            "<select name="+"Metodo de pago"+" id="+"opcionpago"+">"+
+                "<option value="+"mastercard"+">MasterCard</option>"+
+                "<option value="+"paypal"+">Paypal</option>"+
+                "<option value="+"visa"+">Visa</option>"+
+            "</select>"+
+            "<br><br>"+
+            "<input type="+"checkbox"+" id="+"terminos"+"required"+" value="+"Acepto Terminos y condiciones"+">"+
+            "<label>Acepto Terminos y Condiciones</label>"+
+            "<br>"+
+            "<button id="+"pagar"+"onclick="+"redireccionar()"+" >Pagar</button>"+
+        "</div>"+ 
+    "</div>"+
+        "</form>"+
+"</div>";
+    }
+
+    function redireccionar(){
+        var selectpago = document.getElementById("opcionpago");
+      var opcionSeleccionada = selectpago.options[selectpago.selectedIndex].value;
+        //alert(opcionSeleccionada);
+      switch(opcionSeleccionada){
+        case "mastercard":
+        window.location.href = "mastercard.html";
+        alert(window.location.href);
+        break;
+
+        case "paypal":
+        window.location.href = "www.paypal.com";
+        break;
+
+        case "visa":
+        window.location.href = "visa.html";
+        break;
+      }
+    }
+    //Nombre="[A-Za-z]+"
+//Apellido="[A-Za-z]+"
+//telefono="[0-9]{9}"
+//email="/^(([^<>()\[\]\\.,;:\s@”]+(\.[^<>()\[\]\\.,;:\s@”]+)*)|(“.+”))@((\[[0–9]{1,3}\.[0–9]{1,3}\.[0–9]{1,3}\.[0–9]{1,3}])|(([a-zA-Z\-0–9]+\.)+[a-zA-Z]{2,}))$/">
+</script>
+</body>
+</html>
+
+

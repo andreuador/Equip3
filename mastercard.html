@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pagament via mastercard</title>
+</head>
+<body>
+    <div id="Mastercard">
+        <form>
+            <p>Nombre del Titular:</p>
+            <input id="nombredeltitular" title="Nombre del Titular" value="" pattern="[A-Za-z]+">
+            <p>Codigo de seguridad:</p>
+            <input id="codigoseguridad" title="Codigo de seguridad" value="CVC" pattern="[0-9]{3}">
+            <p>Numero de Tarjeta:</p>
+            <input id="numerotarjeta" title="Numero de Tarjeta" value="XXXX XXXX XXXX XXXX" pattern="[0-9]{8}">
+            <p>Fecha de expiracion:</p>
+            <input id="expiracion" title="expiracion" value="MM/AAAA" pattern="\d{4}-\d{2}">
+            <br><br>
+            <button id="confirmarpagament">Confirmar</button>
+        </form>
+    </div>
+</body>
+</html>
