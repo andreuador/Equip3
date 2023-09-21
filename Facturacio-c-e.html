@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario facturación</title>
+</head>
+<body>
+<div id="titol">
+    <h1 align="center">Facturación</h1>
+    
+</div>
+<div id="TipoCliente">
+<h1>Tipo de cliente</h1>
+
+<div id="tipousuario">
+    <input type="radio" id="personafisica" name="drone" value="Persona Física" checked onfocus="cambiaraClient()" />
+    <label for="personafisica">Persona Física</label>
+  </div>
+
+  <div>
+    <input type="radio" id="empresa" name="drone" value="Empresa" onfocus="cambiaraEmpresa()" />
+    <label for="empresa">Empresa</label>
+  </div>
+</div>
+<div id="formulariocliente">
+    <h1>Datos del cliente</h1>
+    <div id="Cliente">
+        <form>
+            <p>Nombre:</p>
+            <input id="nombre" title="Nombre" placeholder="Nombre" required  pattern="[a-z]{1,15}">
+            <p>Apellidos:</p>
+            <input id="apellidos" title="Apellidos" placeholder="Apellidos" required  pattern="[a-z]{1,15}">
+
+
+            <br><br><br>
+            <select class="form-control form-select form-select-lg mb-3"  aria-label="Default select example" id="tipoDoc" >
+                <option selected>Tipo Documento</option>
+                <option value="1">DNI</option>
+                <option value="2">NIA</option>
+                <option value="3">PASSPORT</option>
+              </select>
+              <br>
+              <label class="form-label" for="documento">Documento</label>
+          <input type="text" id="documento" class="form-control" />
+<br><br>
+
+            <p>Telefono:</p>
+            <input id="telefono" title="Telefono" placeholder="Telefono" required  pattern="[0-9]{9}">
+            <p>Email:</p>
+            <input id="email" title="Email" placeholder="Email" required type="email">
+        <div id="direccion">  
+        <p>Dirección</p>
+     <input id="direccion" title="Dirección" placeholder="Dirección" style="width:300px;" required >
+            <p>Seleccione metodo de pago</p>
+            <select name="Metodo de pago" id="opcionpago">
+                <option value="mastercard">MasterCard</option>
+                <option value="paypal">Paypal</option>
+                <option value="visa">Visa</option>
+            </select>
+            <br><br>
+            <input type="checkbox" id="terminos" value="Acepto Terminos y condiciones" required >
+            <label>Acepto Terminos y Condiciones</label>
+            <br>
+            <button id="pagar" type="submit" >Pagar</button>
+        </div> 
+    </div>
+        </form>
+</div>
+
+
+<script>
+    window.onload=main;
+    function main(){
+    document.getElementById("pagar").addEventListener("click",validar);
+    
+    document.getElementById("tipoDoc").addEventListener("change",valorRadio);
+    
+}
+
+function validar(e) {
+    e.preventDefault();
+    elementDoc=document.getElementById("documento").value;
+    if ( valorRadio()  && confirm("Confirma si vols enviar el formulari") ){
+        redireccionar();
+        return true;
+
+    }else{
+        console.log("El DNI es incorrecto")
+        return false;
+    }
+}
+
+
+
+
+    function cambiaraClient(){
+        var formulario=document.getElementById("formulariocliente");
+        formulario.innerHTML="<div id="+"formulariocliente+"+">"+
+    "<h1>Datos del cliente</h1>"+
+    "<div id="+"Cliente"+">"+
+        "<form>"
+            +"<p>Nombre:</p>"+
+            "<input id="+"nombre"+" title="+"Nombre"+" placeholder="+"Nombre"+"   "+"pattern="+"[A-Za-z]+"+"  >"+
+            "<p>Apellidos:</p>"+
+            "<input id="+"apellidos"+" title="+"Apellidos"+" placeholder="+"Apellidos"+"  "+"pattern="+"[A-Za-z]+"+" >"+
+            "<p>Telefono:</p>"+
+            "<input id="+"telefono"+" title="+"Telefono"+" placeholder="+"Telefono"+"  "+"pattern="+"[0-9]{9}"+" >"+
+            "<p>Email:</p>"+
+            "<input id="+"email"+" title="+"Email"+"type="+"email"+" placeholder="+"Email"+">"+
+        "<div id="+"direccion"+">"+  
+        "<p>Dirección</p>"+
+     "<input id="+"direccion"+" title="+"Dirección"+" placeholder="+"Dirección"+" style="+"width:300px;"+">"+
+            "<p>Seleccione metodo de pago</p>"+
+            "<select name="+"Metodo de pago"+" id="+"opcionpago"+">"+
+                "<option value="+"mastercard"+">MasterCard</option>"+
+                "<option value="+"paypal"+">Paypal</option>"+
+                "<option value="+"visa"+">Visa</option>"+
+            "</select>"+
+            "<br><br>"+
+            "<input type="+"checkbox"+" id="+"terminos"+"required"+" value="+"Acepto Terminos y condiciones"+">"+
+            "<label>Acepto Terminos y Condiciones</label>"+
+            "<br>"+
+            "<button id="+"pagar"+" onclick="+"redireccionar()"+" >Pagar</button>"+
+        "</div>"+ 
+    "</div>"+
+        "</form>"+
+"</div>";
+    }
+
+    function cambiaraEmpresa(){
+        var formulario=document.getElementById("formulariocliente");
+        formulario.innerHTML="<div id="+"formularioempresa+"+">"+
+    "<h1>Datos de la empresa</h1>"+
+    "<div id="+"Empresa"+">"+
+        "<form>"
+            +"<p>Nombre:</p>"+
+            "<input id="+"nombre"+" title="+"Nombre"+" placeholder="+"Nombre"+"  "+"pattern="+"[A-Za-z]+"+"required >"+
+            "<p>Dominio:   (opcional)</p>"+
+            "<input id="+"dominio"+" title="+"Dominio"+" placeholder="+"Dominio"+""+"required >"+
+            "<p>Telefono:</p>"+
+            "<input id="+"telefono"+" title="+"Telefono"+" placeholder="+"Telefono"+" "+"pattern="+"[0-9]{9}+"+"required >"+
+            "<p>Email:</p>"+
+            "<input id="+"email"+" title="+"Email"+"type="+"email"+" placeholder="+"Email"+"required >"+
+        "<div id="+"direccion"+">"+  
+        "<p>Dirección</p>"+
+     "<input id="+"direccion"+" title="+"Dirección"+" placeholder="+"Dirección"+" style="+"width:300px;"+"required >"+
+            "<p>Seleccione metodo de pago</p>"+
+            "<select name="+"Metodo de pago"+" id="+"opcionpago"+"required >"+
+                "<option value="+"mastercard"+">MasterCard</option>"+
+                "<option value="+"paypal"+">Paypal</option>"+
+                "<option value="+"visa"+">Visa</option>"+
+            "</select>"+
+            "<br><br>"+
+            "<input type="+"checkbox"+" id="+"terminos"+"required"+" value="+"Acepto Terminos y condiciones"+"required >"+
+            "<label>Acepto Terminos y Condiciones</label>"+
+            "<br>"+
+            "<button id="+"pagar"+"onclick="+"redireccionar()"+" >Pagar</button>"+
+        "</div>"+ 
+    "</div>"+
+        "</form>"+
+"</div>";
+    }
+
+    function redireccionar(){
+        var selectpago = document.getElementById("opcionpago");
+      var opcionSeleccionada = selectpago.options[selectpago.selectedIndex].value;
+        //alert(opcionSeleccionada);
+      switch(opcionSeleccionada){
+        case "mastercard":
+        window.location.href = "mastercard.html";
+        alert(window.location.href);
+        break;
+
+        case "paypal":
+        window.location.href = "www.paypal.com";
+        break;
+
+        case "visa":
+        window.location.href = "visa.html";
+        break;
+      }
+    }
+
+
+    //Validacions
+    function averigua(dni) {
+  var numero;
+  var letr;
+  var letra;
+ 
+     numero = dni.substr(0,dni.length-1);
+     letr = dni.substr(dni.length-1,1);
+     numero = numero % 23;
+     letra='TRWAGMYFPDXBNJZSQVHLCKET';
+     letra=letra.substring(numero,numero+1);
+     alert(letra);
+    if (letra!=letr.toUpperCase()) {
+       console.log('Dni erroneo, la letra del NIF no se corresponde');
+       return false;
+     }else{
+       console.log('Dni correcto');
+       return true;
+     }
+  }
+  function valorRadio(){
+    selector = document.getElementById("tipoDoc").value;
+    campoDoc = document.getElementById("documento").value;
+    console.log(selector);
+    console.log(typeof(selector));
+    switch (selector) {
+        case "1":
+            if(averigua(campoDoc)){
+            if(campoDoc.match(/[0-9]{7,8}[A-Z]/)){
+                return true;
+            }
+            else {
+                return false;
+            }
+        }
+        case "2":
+            if(campoDoc.match(/^([0-9]{8}[A-Z])|[XYZ][0-9]{7}[A-Z]$/)){
+                return true;
+            }
+            else {
+                return false;
+            }
+        case "3":
+            if(campoDoc.match(/^[a-zA-Z]{3}[0-9]{6}[a-zA-Z]?$/)){
+                return true;
+            }
+            else {
+                return false;
+            }
+    
+        default:
+            break;
+    }
+}
+</script>
+</body>
+</html>
+
+
