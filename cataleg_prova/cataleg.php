@@ -6,8 +6,11 @@
         $marques = ["buggati","mercedes","ferrari","porsche","maserati","rolls royce"];                             //Array que conté les marques dels cotxes
         $modelo  = ["aveiro","benz-A8","festa","911","poseidon","space-deyumn"];                                    //Array que conté els models dels cotxes
         $vehicle = plenaVehicle($marques,$modelo,$imatges);                                                         //Array que conté les caratcerístiques del vehicle
-        $cataleg = [plenaVehicle($marques,$modelo,$imatges),plenaVehicle($marques,$modelo,$imatges)];               //Array que conté els vehicles disponibles
-        plenaCataleg();
+        $cataleg = [];                                                                                              //Array que conté els vehicles disponibles
+        //Bucle que carrega el catàleg de cotxes
+        for($i=0;$i<6;$i++){
+            $cataleg[$i] = plenaVehicle($marques,$modelo,$imatges);
+        }
         
         /**
         * Mètode que plena el vehicle amb les seves característiques de manera aleatoria
@@ -19,20 +22,11 @@
         */
         function plenaVehicle($mar,$mod,$img):array{
             $vehicle[0] = randNums(4).randLetter(3);
-            $vehicle[1-] = $marques[rand(0,5)];
+            $vehicle[1] = $marques[rand(0,5)];
             $vehicle[2] = $mod[rand(0,5)];
             $vehicle[3] = rand(100000,2000000)."€";
             $vehicle[4] = $img[rand(0,5)];    
             return $vehicle;
-        }
-        
-        /**
-        * Mètode que plena el catàleg de vehicles
-        */
-        function plenaCataleg(){
-            for($i=0;$i<4;$i++){
-                $cataleg[$i] = plenaVehicle($marques,$modelo,$imatges);
-            }
         }
         
         /**
@@ -55,12 +49,15 @@
         }
         ?>
         
-        //Títol
-        <?php echo "<h1>Vehicles</h1>";?>
+        
+        <?php
+        //Títol 
+        echo "<h1>Vehicles</h1>";
+        ?>
         
         <?php 
             //Bucle que mostra les especificacions de cada vehicle del catàleg
-            for($i=0;$i<5;$i++){
+            for($i=0;$i<count($cataleg);$i++){
                 echo "<img src=". $cataleg[$i][4] . "/>";
                 echo "<p>".$cataleg[$i][0]."</p>";
                 echo "<p>".$cataleg[$i][1]."</p>";
