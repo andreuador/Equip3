@@ -2,7 +2,10 @@
 
 
 function main(){
-    let table = document.querySelector('body>table'); //Seleccionem la taula del document html
+    let table       = document.querySelector('body>table'); //Seleccionem la taula del document html
+    let imatges     = ['img/rollsRoyce.jpeg','img/ferrari.jpeg','img/buggati.jpeg','img/maserati.webp','img/mercedes.jpeg','img/porsche.jpeg'];
+    let preuCarret  = document.querySelector('#preuCarret>h1'); 
+    let carret = [];
 
     createThs(table);
     createTds(table);
@@ -33,7 +36,7 @@ function main(){
         var cantitat = 1;                                       //Cantitat de cotxes del mateix tipus
         let importe = parseInt(Math.random()*200000+100000);    //Preu de venta d'un cotxe 
         let img = document.createElement('img');                //Imatge del vehicle
-        img.setAttribute('src','/cataleg_prova/rollsRoyce.jpeg');
+        img.setAttribute('src',imatges[parseInt(Math.random()*imatges.length)]);
         img.setAttribute('width','100px');
 
         let div = document.createElement('div');                
@@ -56,8 +59,18 @@ function main(){
         createTd("nombreV","Coche",tr);
         createTd("importe",importe+"$",tr);
         createTd("cantidad",div,tr);
-        createTd("total",calculaTotal(cantitat,importe)+"$",tr);
+        createTd("total",calculaTotalProducte(cantitat,importe)+"$",tr);
         createTd("del",buttonDel,tr);
+
+        let vehicle = {
+            image:img,
+            nom:"coche",
+            import:importe,
+            cantitat:cantitat,
+        }
+
+        carret.push(vehicle);
+        preuCarret.textContent = calculaTotalCarret();
 
 
         table.append(tr);                                       //S'anyadeix el la fila a la taula
@@ -75,8 +88,10 @@ function main(){
 
             let total = tr.querySelector('.total');
             total.textContent = "";
-            total.textContent = calculaTotal(cantitat,importe)+"$";
+            total.textContent = calculaTotalProducte(cantitat,importe)+"$";
 
+            preuCarret.textContent = "";
+            preuCarret.textContent = calculaTotalProducte(cantitat,importe)+"$";
 
         });
 
@@ -93,7 +108,8 @@ function main(){
 
                 let total = tr.querySelector('.total');
                 total.textContent = "";
-                total.textContent = calculaTotal(cantitat,importe)+"$";
+                total.textContent = calculaTotalProducte(cantitat,importe)+"$";
+                
             }
         });
 
@@ -105,21 +121,38 @@ function main(){
         });
     }
 
-    function calculaTotal(cantitat, importe){
+    /**
+    * Aquest mètode s'encarrega de calcular l'import total del producte 
+    */
+    function calculaTotalProducte(cantitat, importe){
         return cantitat*importe;
     }
 
+    /**
+    * Aquest mètode crea els th's de la taula, afegint el contingut desitjat
+    */
     function createTh(content,tr){
         let th = document.createElement('th');
         th.append(content);
         tr.append(th);
     }
 
+    /**
+    * Aquest mètode crea els td's de la taula, afegint el contingut desitjat 
+    */
     function createTd(clase,content,tr){
         let td = document.createElement('td');
         td.setAttribute('class',clase);
         td.append(content);
         tr.append(td);
+    }
+
+    function calculaTotalCarret(){
+        let suma=0;
+        for(let i = 0;i<carret.length;i++){
+            suma += carret[i].cantitat;
+        };
+        return suma;
     }
 }
 
