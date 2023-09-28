@@ -6,6 +6,7 @@ function main(){
     let imatges     = ['img/rollsRoyce.jpeg','img/ferrari.jpeg','img/buggati.jpeg','img/maserati.webp','img/mercedes.jpeg','img/porsche.jpeg'];
     let preuCarret  = document.querySelector('#preuCarret>h1'); 
     let carret = [];
+    let id = 1;
 
     createThs(table);
     createTds(table);
@@ -26,13 +27,13 @@ function main(){
         createTh("",tr);
         table.append(tr);
     }
-
     /**
      * Mètode que crea les cel·les de contingut de la taula i les emplena del seu corresponent contingut 
      * @param {*} table la taula en la que volen que s'inserten els Td's
      */
     function createTds(table){
         let tr = document.createElement('tr');
+        
         var cantitat = 1;                                       //Cantitat de cotxes del mateix tipus
         let importe = parseInt(Math.random()*200000+100000);    //Preu de venta d'un cotxe 
         let img = document.createElement('img');                //Imatge del vehicle
@@ -41,6 +42,7 @@ function main(){
 
         let div = document.createElement('div');                
         let buttonDel = document.createElement('button');       //Botó per eliminar el producte del carret
+        buttonDel.setAttribute('id',id);
         buttonDel.innerHTML = "Eliminar";                       
 
         let buttonResta = document.createElement('button');     //Botó per disminuir la cantitat de vehicles  
@@ -53,8 +55,6 @@ function main(){
         div.append(cantitat);
         div.append(buttonSuma);
 
-        
-        
         createTd("imagenV",img,tr);
         createTd("nombreV","Coche",tr);
         createTd("importe",importe+"$",tr);
@@ -70,11 +70,11 @@ function main(){
         }
 
         carret.push(vehicle);
+        localStorage.setItem('vehicle'+id,vehicle);
         preuCarret.textContent = calculaTotalCarret();
 
-
         table.append(tr);                                       //S'anyadeix el la fila a la taula
-
+        id += 1;
 
         /**
          * Aquest event fa que quan es clicke en el botó de suma incremente la cantitat del mateix producte 
@@ -92,7 +92,6 @@ function main(){
 
             preuCarret.textContent = "";
             preuCarret.textContent = calculaTotalProducte(cantitat,importe)+"$";
-
         });
 
         /**
@@ -109,7 +108,6 @@ function main(){
                 let total = tr.querySelector('.total');
                 total.textContent = "";
                 total.textContent = calculaTotalProducte(cantitat,importe)+"$";
-                
             }
         });
 
@@ -118,6 +116,11 @@ function main(){
          */
         buttonDel.addEventListener('click',function(){
             tr.remove(tr);
+            
+            localStorage.removeItem('vehicle'+buttonDel.getAttribute('id'));
+            if(buttonDel.getAttribute('id') == id)
+                localStorage.removeItem('vehicle'+id);
+
         });
     }
 
