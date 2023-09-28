@@ -1,4 +1,4 @@
-<html>
+<html lang="es">
     <body>
         <?php
         ini_set("display_errors", "on" );
@@ -35,17 +35,16 @@
             //Bucle que mostra les especificacions de cada vehicle del catàleg
             for($i=0;$i < count($cataleg); $i++){ ?>
             
-            <div>                
-                <a href="especificacions.php?matricula="><?= $cataleg[$i]->getMatricula() ?></a>
-
+            <div>
+                <a href="especificacions.php?matricula=<?= $cataleg[$i]->getMatricula() ?>"><?= $cataleg[$i]->getMatricula() ?>
+                </a>
 
             <?php    echo "<img src=". $cataleg[$i]->getImatge() . "/>";
-                echo "<p>".$cataleg[$i]->getMatricula()."</p>";
                 echo "<p>".$cataleg[$i]->getMarca()."</p>";
                 echo "<p>".$cataleg[$i]->getModel()."</p>";
                 echo "<p>".$cataleg[$i]->getPreuVenta()."</p>";
-                echo "</div>";
             }
         ?>
+            </div>
     </body>
 </html>

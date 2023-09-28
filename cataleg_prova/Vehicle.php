@@ -7,7 +7,7 @@ class Vehicle {
     private string  $danys;
     private string  $model;
     private string  $carburant;
-    private long    $km;
+    private int    $km;
     private string  $marca;
     private string  $descripcio;
     private float   $iva;
@@ -26,28 +26,11 @@ class Vehicle {
             $this->imatge = $image;
     }
     
-    static function generaMatricula(){
-        return randNums(4).randLetter(3);
+    static function generaMatricula():string{
+        $lletres = chr(rand(65,90)).chr(rand(65,90)).chr(rand(65,90));
+        return rand(0000,9999).$lletres;
     }
-    
-    /**
-        * Mètode que genera 4 números de manera aleatoria del 0 al 9
-        *
-        * @return retorna un conjunt de 4 números en tipus String
-        */
-        function randNums($i) : string{
-            return rand(0000,9999);
-        }
-        
-        /**
-        * Mètode que genera 3 lletres de manera aleatoria
-        *
-        * @return retorna un String de 3 lletres que seràn les lletres de la matrícula
-        */
-        function randLetter($i) : string{
-            $lletres = chr(rand(65,90)).chr(rand(65,90)).chr(rand(65,90));
-            return $lletres;
-        }
+
     
     
     static function generaImatge($imatges):string{
