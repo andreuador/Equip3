@@ -1,0 +1,19 @@
+<div>
+    <button onclick="desplegar()">Usuario</button>
+    <div id="enlaces" style="display: none;">
+      <a href="./generarcliente.php">Cliente</a><br>
+      <a href="./cataleg.php">Cataleg</a><br>
+      <a href="./carrito.php">Carrito</a><br>
+    </div>
+  </div>
+  
+  <script>
+  function desplegar() {
+    var x = document.getElementById("enlaces");
+    if (x.style.display === "none") {
+      x.style.display = "block";
+    } else {
+      x.style.display = "none";
+    }
+  }
+  </script>
