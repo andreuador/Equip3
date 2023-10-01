@@ -104,25 +104,11 @@ function validar(e) {
             "<input id="+"nombre"+" title="+"Nombre"+" placeholder="+"Nombre"+"   "+"pattern="+"[A-Za-z]+"+"  >"+
             "<p>Apellidos:</p>"+
             "<input id="+"apellidos"+" title="+"Apellidos"+" placeholder="+"Apellidos"+"  "+"pattern="+"[A-Za-z]+"+" >"+
-            
-            "<br><br><br>"+
-            "<select class="+"form-control form-select form-select-lg mb-3"+  "aria-label="+"Default select example"+" id="+"tipoDoc"+ ">"+
-               " <option selected>Tipo Documento</option>"+
-                "<option value="+"1"+">DNI</option>"+
-                "<option value="+"2"+">NIA</option>"+
-                "<option value="+"3"+">PASSPORT</option>"+
-              "</select>"+
-              "<br>"+
-              "<label class="+"form-label"+" for="+"documento"+">Documento</label>"+
-          "<input type="+"text"+" id="+"documento"+" class="+"form-control"+" />"+
-            "<br><br>"+
-
             "<p>Telefono:</p>"+
             "<input id="+"telefono"+" title="+"Telefono"+" placeholder="+"Telefono"+"  "+"pattern="+"[0-9]{9}"+" >"+
             "<p>Email:</p>"+
             "<input id="+"email"+" title="+"Email"+"type="+"email"+" placeholder="+"Email"+">"+
-        
-            "<div id="+"direccion"+">"+  
+        "<div id="+"direccion"+">"+  
         "<p>Dirección</p>"+
      "<input id="+"direccion"+" title="+"Dirección"+" placeholder="+"Dirección"+" style="+"width:300px;"+">"+
             "<p>Seleccione metodo de pago</p>"+
@@ -135,7 +121,7 @@ function validar(e) {
             "<input type="+"checkbox"+" id="+"terminos"+"required"+" value="+"Acepto Terminos y condiciones"+">"+
             "<label>Acepto Terminos y Condiciones</label>"+
             "<br>"+
-            "<button id="+"pagar"+" >Pagar</button>"+
+            "<button id="+"pagar"+" onclick="+"redireccionar()"+" >Pagar</button>"+
         "</div>"+ 
     "</div>"+
         "</form>"+
@@ -151,15 +137,11 @@ function validar(e) {
             +"<p>Nombre:</p>"+
             "<input id="+"nombre"+" title="+"Nombre"+" placeholder="+"Nombre"+"  "+"pattern="+"[A-Za-z]+"+"required >"+
             "<p>Dominio:   (opcional)</p>"+
-            "<input id="+"dominio"+" title="+"Dominio"+" placeholder="+"Dominio"+""+" >"+
-
-            "<p>CIF:   </p>"+
-            "<input id="+"CIF"+" title="+"CIF"+" required placeholder="+"XXXXXXXXX"+"pattern="+"^([ABCDFGHJKLMNPQRSUVWabcdfghlmnpqrsuvw])([0-9]{7})([0-9A-Ja]$"+">"+
-
+            "<input id="+"dominio"+" title="+"Dominio"+" placeholder="+"Dominio"+""+"required >"+
             "<p>Telefono:</p>"+
-            "<input id="+"telefono"+" title="+"Telefono"+" placeholder="+"Telefono"+" "+"pattern="+"[0-9]{9}+"+" >"+
+            "<input id="+"telefono"+" title="+"Telefono"+" placeholder="+"Telefono"+" "+"pattern="+"[0-9]{9}+"+"required >"+
             "<p>Email:</p>"+
-            "<input id="+"email"+" title="+"Email"+"type="+"email"+"required placeholder="+"Email"+">"+
+            "<input id="+"email"+" title="+"Email"+"type="+"email"+" placeholder="+"Email"+"required >"+
         "<div id="+"direccion"+">"+  
         "<p>Dirección</p>"+
      "<input id="+"direccion"+" title="+"Dirección"+" placeholder="+"Dirección"+" style="+"width:300px;"+"required >"+
@@ -173,7 +155,7 @@ function validar(e) {
             "<input type="+"checkbox"+" id="+"terminos"+"required"+" value="+"Acepto Terminos y condiciones"+"required >"+
             "<label>Acepto Terminos y Condiciones</label>"+
             "<br>"+
-            "<button id="+"pagar"+"onclick="+" >Pagar</button>"+
+            "<button id="+"pagar"+"onclick="+"redireccionar()"+" >Pagar</button>"+
         "</div>"+ 
     "</div>"+
         "</form>"+
@@ -254,6 +236,7 @@ function validar(e) {
         default:
             break;
     }
+
 }
 </script>
 </body>
