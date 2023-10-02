@@ -75,7 +75,6 @@ CREATE TABLE IF NOT EXISTS factura(
 	matricula_vehiculo VARCHAR(10),
 	FOREIGN KEY (dni_usuario) REFERENCES usuarios(DNI),
 	FOREIGN KEY (id_comanda) REFERENCES comanda(id),
-	FOREIGN KEY (matricula_vehiculo) REFERENCES vehiculo(matricula)
 );
 
 CREATE TABLE particular (
