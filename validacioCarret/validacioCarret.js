@@ -2,10 +2,10 @@
 
 function main(){
     let table       = document.querySelector('body>table'); //Seleccionem la taula del document html
-    let imatges     = ['img/rollsRoyce.jpeg','img/ferrari.jpeg','img/buggati.jpeg','img/maserati.webp','img/mercedes.jpeg','img/porsche.jpeg'];
-    let marques     = ['Rolls Royce','Ferrari','Buggati','Maserati','Mercedes','Porsche'];
-    let preuCarret  = document.querySelector('#preuCarret>h1'); 
-    let carret = [];
+    let imatges     = ['img/rollsRoyce.jpeg','img/ferrari.jpeg','img/buggati.jpeg','img/maserati.webp','img/mercedes.jpeg','img/porsche.jpeg']; //array que conté les imatges dels vehicles
+    let marques     = ['Rolls Royce','Ferrari','Buggati','Maserati','Mercedes','Porsche']; //array que conté les marques dels vehicles
+    let preuCarret  = document.querySelector('#preuCarret>h1');     
+    let carret = []; 
     let id = 1;
     let totalCarret = 0;
 
@@ -43,6 +43,7 @@ function main(){
         img.setAttribute('src',imatges[parseInt(Math.random()*imatges.length)]);
         img.setAttribute('width','100px');
 
+        //objecte de tipus vehicle
         let vehicle = {
             image:img,
             nom:marques[parseInt(Math.random()*marques.length)],
@@ -63,7 +64,7 @@ function main(){
         let buttonSuma = document.createElement('button');      //Botó per incrementar la cantitat de vehicles 
         buttonSuma.innerHTML = "+";
 
-
+        //Anyadim els botons amb el DOM
         div.append(buttonResta);
         div.append(vehicle.cantitat);
         div.append(buttonSuma);
@@ -77,6 +78,7 @@ function main(){
         createTd("total",calculaTotalProducte(vehicle.cantitat,vehicle.import),tr);
         createTd("del",buttonDel,tr);
 
+        //anyadim el vehicle creat al array
         carret.push(vehicle);
         localStorage.setItem('vehicle'+id,vehicle);
         
@@ -142,7 +144,9 @@ function main(){
     }
 
     /**
-    * Aquest mètode s'encarrega de calcular l'import total del producte 
+    * Aquest mètode s'encarrega de calcular l'import total del producte
+    * @param {*} cant determina la cantitat del mateix producte 
+    * @param {*} imp  determina el import d'una unitat del vehicle anyadit 
     */
     function calculaTotalProducte(cant, imp){
         return cant*imp;
@@ -167,11 +171,19 @@ function main(){
         tr.append(td);
     }
 
+    /**
+    * Mètode que calcula l'import total del carret
+    * @param {*} imp determina l'import total d'un mateix tipus de vehicle 
+    */
     function calculaTotalCarret(imp){
         return totalCarret += imp;
       
     }
 
+     /**
+    * Mètode que li resta l'import del vehicle seleccionat a l'import total del carret
+    * @param {*} imp determina l'import total d'un mateix tipus de vehicle 
+    */
     function resta(imp){
         return totalCarret -= imp;
     }
