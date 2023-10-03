@@ -1,4 +1,12 @@
 <?php
+    /**
+    *   En aquesta classe estaràn els atributs i funcions del client 
+    *   per tal d'emmagatzemar les seves dades en el sistema i oferir-lu una millor experiencia en ell
+    *   
+    *   @name Equip3-Cataleg i Procés de Venta
+    *   @since 02-10-2023
+    *   @version 1.0
+    */
     class Vehicle {
         private string  $matricula; 
         private int     $id;
@@ -45,52 +53,35 @@
         }
         
         /**
-        * Mètode que plena el vehicle amb les seves característiques de manera aleatoria
-        *
-        * @param mar    array de les marques de cotxe
-        * @param mod    array dels modelos de cotxe
-        * @param img    array de les imatges dels cotxes
-        * @return retorna l'array de vehicle amb les seves característiques generades aleatoriament
+        * Mètode que retorna la matrícula del vehicle
         */
         public function getMatricula(): string {    
             return $this->matricula;
         }
         
+        /**
+        * Mètode que retorna la imatge del vehicle
+        */
         public function getImatge() {    
             return $this->imatge;
         }
         
         /**
-        * Mètode que plena el vehicle amb les seves característiques de manera aleatoria
-        *
-        * @param mar    array de les marques de cotxe
-        * @param mod    array dels modelos de cotxe
-        * @param img    array de les imatges dels cotxes
-        * @return retorna l'array de vehicle amb les seves característiques generades aleatoriament
+        * Mètode que retorna la marca del vehicle
         */
         public function getMarca() {    
             return $this->marca;
         }
         
         /**
-        * Mètode que plena el vehicle amb les seves característiques de manera aleatoria
-        *
-        * @param mar    array de les marques de cotxe
-        * @param mod    array dels modelos de cotxe
-        * @param img    array de les imatges dels cotxes
-        * @return retorna l'array de vehicle amb les seves característiques generades aleatoriament
+        * Mètode que retorna el model del vehicle
         */
         public function getModel() {    
             return $this->model;
         }
         
         /**
-        * Mètode que plena el vehicle amb les seves característiques de manera aleatoria
-        *
-        * @param mar    array de les marques de cotxe
-        * @param mod    array dels modelos de cotxe
-        * @param img    array de les imatges dels cotxes
-        * @return retorna l'array de vehicle amb les seves característiques generades aleatoriament
+        * Mètode que retorna el preu de la venta del vehicle
         */
         public function getPreuVenta() {    
             return $this->preu_venta;

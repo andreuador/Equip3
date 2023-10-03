@@ -6,6 +6,11 @@
     </head>
     <body>
         <?php
+        /**
+        * Aquest document genera una factura aleatoria 
+        * amb les dades generades de la classe Factura
+        * 
+        */
             ini_set("display_errors", "on");
             require 'Factura.php';
             $factura = new Factura();

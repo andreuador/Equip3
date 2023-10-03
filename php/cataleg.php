@@ -6,13 +6,13 @@
     </head>
     <body>
         <?php
-            ini_set("display_errors", "on" );
-            error_reporting(E_ALL);
+            ini_set("display_errors", "on" ); // Ens mostra els errors per el navegador
+            error_reporting(E_ALL);           //
             
             require 'Vehicle.php';
-            $imatges = ["img/ferrari.jpeg","img/buggati.jpeg","img/mercedes.jpeg","img/porsche.jpeg","img/maserati.webp","img/rollsRoyce.jpeg"];    //Array que conté les imatges dels cotxes
-            $marques = ["buggati","mercedes","ferrari","porsche","maserati","rolls royce"];                             //Array que conté les marques dels cotxes
-            $models  = ["aveiro","benz-A8","festa","911","poseidon","space-deyumn"];                                
+            $imatges = ["img/ferrari.jpeg","img/buggati.jpeg","img/mercedes.jpeg","img/porsche.jpeg","img/maserati.webp","img/rollsRoyce.jpeg"]; //Array que conté les imatges dels cotxes
+            $marques = ["buggati","mercedes","ferrari","porsche","maserati","rolls royce"];  //Array que conté les marques dels cotxes
+            $models  = ["aveiro","benz-A8","festa","911","poseidon","space-deyumn"]; //Array que conté els models dels vehicles                             
                                                                 
             $cataleg = [];  
                                                                                                         
