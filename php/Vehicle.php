@@ -25,6 +25,7 @@
         private string    $nou_ocasio;
         private string  $imatge; 
 
+        //Constructor
         public function __construct(string $marca, string $model, string $image, string $matricula){
                 $this->matricula = $matricula;
                 $this->marca = $marca;
@@ -33,21 +34,32 @@
                 $this->imatge = $image;
         }
         
+        /**
+        * Mètode que genera una matrícula en el seu format corresponent
+        */
         static function generaMatricula(): string {
             $lletres = chr(rand(65,90)).chr(rand(65,90)).chr(rand(65,90));
             return rand(0000,9999).$lletres;
         }
 
         
-        
+        /**
+        * Mètode que retorna una imatge aleatoria del array d'imatges
+        */
         static function generaImatge($imatges): string {
             return $imatges[array_rand($imatges)]; 
         }
         
+        /**
+        * Mètode que retorna una Marc aleatoria del array de marques
+        */
         static function generaMarca($marques): string {
             return $marques[array_rand($marques)];
         }
         
+        /**
+        * Mètode que retorna el Model de manera aleatoria del array de Models
+        */
         static function generaModel($models): string {
             return $models[array_rand($models)];           
         }
