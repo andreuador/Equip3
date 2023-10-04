@@ -61,10 +61,8 @@ CREATE TABLE IF NOT EXISTS factura(
     fecha DATE NOT NULL,
     dni_usuario VARCHAR(10) NOT NULL,
     id_comanda INT NOT NULL,
-    matricula_vehiculo VARCHAR(10),
     FOREIGN KEY (dni_usuario) REFERENCES usuarios(DNI),
-    FOREIGN KEY (id_comanda) REFERENCES comanda(id),
-    FOREIGN KEY (matricula_vehiculo) REFERENCES vehiculo (matricula)
+    FOREIGN KEY (id_comanda) REFERENCES comanda(id)
 
 -- Inserts vehicles
 INSERT INTO vehicles (matricula, color, danys, model, carburant, data_mat, km, marca, descripcio, iva, num_bastidor, canvi_m, preu_v, preu_c, id_comanda)
