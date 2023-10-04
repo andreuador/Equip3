@@ -8,54 +8,62 @@ CREATE DATABASE IF NOT EXISTS db_equip3;
 USE db_equip3;
 
 -- Crear una tabla "vehicles"
-CREATE TABLE IF NOT EXISTS vehicles (
-	matricula VARCHAR(10) PRIMARY KEY,
-	color VARCHAR(50) NOT NULL,
-    danys TEXT,
-    model VARCHAR(50) NOT NULL,
-    carburant VARCHAR(50) NOT NULL,
-    data_mat DATE NOT NULL,
-    km INT NOT NULL,
-    marca VARCHAR(50) NOT NULL,
-    descripcio TEXT,
+CREATE TABLE IF NOT EXISTS vehiculo (
+    ID INT PRIMARY KEY AUTO_INCREMENT,
+    matricula VARCHAR(10),
+    color VARCHAR(50) NOT NULL,
+    danos TEXT,
+    modelo INT,
+    tipo_carburante VARCHAR(50) NOT NULL,
+    fecha_matriculacion DATE NOT NULL,
+    kilometros INT NOT NULL,
+    marca INT,
+    descripcion TEXT,
     iva DECIMAL(5,2) NOT NULL,
     num_bastidor VARCHAR(50) NOT NULL,
-    canvi_m VARCHAR(20) NOT NULL,
-    preu_v DECIMAL(10, 2) NOT NULL,
-    preu_c DECIMAL(10, 2) NOT NULL
+    tipo_cambio VARCHAR(20) NOT NULL,
+    precio_venta DECIMAL(10, 2) NOT NULL,
+    precio_compra DECIMAL(10, 2) NOT NULL,
+    id_comanda INT,
+    id_proveedor INT,
+    INDEX (matricula)
 );
 
 -- Crear una tabla "clients"
-CREATE TABLE IF NOT EXISTS clients (
-    dni VARCHAR(10) PRIMARY KEY,
-    nom VARCHAR(50) NOT NULL,
-    cognom1 VARCHAR(50) NOT NULL,
-    cognom2 VARCHAR(50) NOT NULL,
-    direccio VARCHAR(255) NOT NULL,
-    nom_usuari VARCHAR(50) NOT NULL,
-    num_targeta VARCHAR(20),
-    tipus_client ENUM('Particular', 'Profesional') NOT NULL
+CREATE TABLE usuarios (
+	id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+	tipo_usuario VARCHAR(225) NOT NULL,
+	nombre VARCHAR(255) NOT NULL,
+	apellido VARCHAR(255) NOT NULL,
+	domicilio VARCHAR(255) NOT NULL,
+	DNI VARCHAR(10) NOT NULL,
+	INDEX (DNI),
+	telefono VARCHAR(15) NOT NULL,
+	razon_social VARCHAR(255) NOT NULL,
+	correo_electronico VARCHAR(255) NOT NULL
 );
 
 -- Crear una tabla "comanda"
 CREATE TABLE IF NOT EXISTS comanda (
     id INT AUTO_INCREMENT PRIMARY KEY,
-    num_vehicles INT NOT NULL,
-    estat VARCHAR(50) NOT NULL,
-    matricula_v VARCHAR(10) NOT NULL,
-    FOREIGN KEY (matricula_v) REFERENCES vehicles(matricula)
+    num_vehiculo INT NOT NULL,
+    estado VARCHAR(50) NOT NULL,
+    matricula_v VARCHAR(10),
+    id_factura INT,
+	FOREIGN KEY (matricula_v) REFERENCES vehiculo(matricula)
 );
 
 -- Crear una tabla "factura"
 CREATE TABLE IF NOT EXISTS factura(
     id INT AUTO_INCREMENT PRIMARY KEY,
-    preu DECIMAL(10, 2) NOT NULL,
-    data_fac DATE NOT NULL,
-    dni_client VARCHAR(10) NOT NULL,
+    precio DECIMAL(10, 2) NOT NULL,
+    fecha DATE NOT NULL,
+    dni_usuario VARCHAR(10) NOT NULL,
     id_comanda INT NOT NULL,
-    FOREIGN KEY (dni_client) REFERENCES clients(dni),
-    FOREIGN KEY (id_comanda) REFERENCES comanda(id)
-);
+    matricula_vehiculo VARCHAR(10),
+    FOREIGN KEY (dni_usuario) REFERENCES usuarios(DNI),
+    FOREIGN KEY (id_comanda) REFERENCES comanda(id),
+    FOREIGN KEY (matricula_vehiculo) REFERENCES vehiculo (matricula)
 
 -- Inserts vehicles
 INSERT INTO vehicles (matricula, color, danys, model, carburant, data_mat, km, marca, descripcio, iva, num_bastidor, canvi_m, preu_v, preu_c, id_comanda)
