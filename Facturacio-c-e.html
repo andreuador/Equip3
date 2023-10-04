@@ -28,9 +28,7 @@
     <div id="Cliente">
         <form>
             <p>Nombre:</p>
-            <input id="nombre" title="Nombre" placeholder="Nombre" required  pattern="[a-z]{1,15}">
-            <p>Apellidos:</p>
-            <input id="apellidos" title="Apellidos" placeholder="Apellidos" required  pattern="[a-z]{1,15}">
+            <input id="nombre" title="Nombre" placeholder="Nombre Completo" required  pattern="[A-Za-z]{1,30}">
 
 
             <br><br><br>
@@ -70,44 +68,46 @@
 
 
 <script>
-    window.onload=main;
+   
     function main(){
-    document.getElementById("pagar").addEventListener("click",validar);
+    window.onload=main;
+    document.getElementById("pagar").addEventListener("click",validarClient);
     
     document.getElementById("tipoDoc").addEventListener("change",valorRadio);
     
 }
 
-function validar(e) {
-    e.preventDefault();
-    elementDoc=document.getElementById("documento").value;
-    if ( valorRadio()  && confirm("Confirma si vols enviar el formulari") ){
-        redireccionar();
-        return true;
 
-    }else{
-        console.log("El DNI es incorrecto")
-        return false;
-    }
-}
 
 
 
 
     function cambiaraClient(){
+        window.onload=main;
         var formulario=document.getElementById("formulariocliente");
         formulario.innerHTML="<div id="+"formulariocliente+"+">"+
     "<h1>Datos del cliente</h1>"+
     "<div id="+"Cliente"+">"+
         "<form>"
-            +"<p>Nombre:</p>"+
-            "<input id="+"nombre"+" title="+"Nombre"+" placeholder="+"Nombre"+"   "+"pattern="+"[A-Za-z]+"+"  >"+
-            "<p>Apellidos:</p>"+
-            "<input id="+"apellidos"+" title="+"Apellidos"+" placeholder="+"Apellidos"+"  "+"pattern="+"[A-Za-z]+"+" >"+
+            +"<p>Nombre Completo:</p>"+
+            "<input id="+"nombre"+" title="+"Nombre"+" placeholder=\"Nombre Completo\"+pattern="+"[A-Za-z]+"+"   >"+
+
+            "<br><br><br>"+
+            "<select class="+"form-control form-select form-select-lg mb-3"+"  aria-label="+"Default select example"+" id="+"tipoDoc"+" >"+
+                "<option selected>Tipo Documento</option>"+
+                "<option value=\"1\">DNI</option>"+
+                "<option value=\"2\">NIA</option>"+
+                "<option value=\"3\">PASSPORT</option>"+
+              "</select>"+
+              "<br>"+
+              "<label class=\"form-label\" for=\"documento\">Documento</label>"+
+          "<input type=\"text\" id=\"documento\" class=\"form-control\" />"+
+"<br><br>"+
+
             "<p>Telefono:</p>"+
             "<input id="+"telefono"+" title="+"Telefono"+" placeholder="+"Telefono"+"  "+"pattern="+"[0-9]{9}"+" >"+
             "<p>Email:</p>"+
-            "<input id="+"email"+" title="+"Email"+"type="+"email"+" placeholder="+"Email"+">"+
+            "<input id=\"email\" title=\"Email\" type=\"email\" placeholder=\"Email\" required>"+
         "<div id="+"direccion"+">"+  
         "<p>Dirección</p>"+
      "<input id="+"direccion"+" title="+"Dirección"+" placeholder="+"Dirección"+" style="+"width:300px;"+">"+
@@ -118,54 +118,135 @@ function validar(e) {
                 "<option value="+"visa"+">Visa</option>"+
             "</select>"+
             "<br><br>"+
-            "<input type="+"checkbox"+" id="+"terminos"+"required"+" value="+"Acepto Terminos y condiciones"+">"+
+            "<input type="+"checkbox"+" id=\"terminos\" required"+" value="+"Acepto Terminos y condiciones"+">"+
             "<label>Acepto Terminos y Condiciones</label>"+
             "<br>"+
-            "<button id="+"pagar"+" onclick="+"redireccionar()"+" >Pagar</button>"+
+            "<button id="+"pagar"+" >Pagar</button>"+
         "</div>"+ 
     "</div>"+
         "</form>"+
 "</div>";
+
+document.getElementById("pagar").addEventListener("click",validarClient);
     }
 
     function cambiaraEmpresa(){
+        window.onload=main;
         var formulario=document.getElementById("formulariocliente");
         formulario.innerHTML="<div id="+"formularioempresa+"+">"+
     "<h1>Datos de la empresa</h1>"+
     "<div id="+"Empresa"+">"+
-        "<form>"
-            +"<p>Nombre:</p>"+
-            "<input id="+"nombre"+" title="+"Nombre"+" placeholder="+"Nombre"+"  "+"pattern="+"[A-Za-z]+"+"required >"+
+        "<form>"+
+            "<p>Nombre de la Empresa:</p>"+
+            "<input id="+"nombre"+" title="+"Nombre"+" placeholder="+"Nombre"+"  "+"pattern=\"/^[a-zA-Z0-9!@#$%^&*]+$/\"required >"+
+            "<p>CIF de la Empresa:</p>"+
+            "<input id="+"cif"+" title="+"Cif"+" placeholder="+"Introduce el CIF"+"  "+"pattern=\"^[a-zA-Z][0-9]{8}$\"required >"+
             "<p>Dominio:   (opcional)</p>"+
-            "<input id="+"dominio"+" title="+"Dominio"+" placeholder="+"Dominio"+""+"required >"+
+            "<input id="+"dominio"+" title="+"Dominio"+" placeholder="+"Dominio"+" >"+
             "<p>Telefono:</p>"+
-            "<input id="+"telefono"+" title="+"Telefono"+" placeholder="+"Telefono"+" "+"pattern="+"[0-9]{9}+"+"required >"+
+            "<input id="+"telefono"+" title="+"Telefono"+" placeholder="+"Telefono"+" "+"pattern=\"[0-9]{9}+\"required >"+
             "<p>Email:</p>"+
-            "<input id="+"email"+" title="+"Email"+"type="+"email"+" placeholder="+"Email"+"required >"+
+            "<input id="+"email"+" title=\"Email\"type=\"email\" placeholder=\"Email\" required >"+
         "<div id="+"direccion"+">"+  
         "<p>Dirección</p>"+
      "<input id="+"direccion"+" title="+"Dirección"+" placeholder="+"Dirección"+" style="+"width:300px;"+"required >"+
             "<p>Seleccione metodo de pago</p>"+
-            "<select name="+"Metodo de pago"+" id="+"opcionpago"+"required >"+
+            "<select name="+"Metodo de pago"+" id=\"opcionpago\"required >"+
                 "<option value="+"mastercard"+">MasterCard</option>"+
                 "<option value="+"paypal"+">Paypal</option>"+
                 "<option value="+"visa"+">Visa</option>"+
             "</select>"+
             "<br><br>"+
-            "<input type="+"checkbox"+" id="+"terminos"+"required"+" value="+"Acepto Terminos y condiciones"+"required >"+
+            "<input type="+"checkbox"+" id=\"terminos\" required >"+
             "<label>Acepto Terminos y Condiciones</label>"+
             "<br>"+
-            "<button id="+"pagar"+"onclick="+"redireccionar()"+" >Pagar</button>"+
+            "<button id=\"pagar\"  >Pagar</button>"+
         "</div>"+ 
     "</div>"+
         "</form>"+
 "</div>";
+document.getElementById("pagar").addEventListener("click",validarEmpresari);
     }
+    function validarNom () {
+           var element = document.getElementById("nombre");
+           if (!element.checkValidity()){
+               if (element.validity.valueMissing){
+                   alert("Deus d'introduïr un nom correcte.");
+               }
+               if (element.validity.patternMismatch){
+                   alert("El nom sols pot contindre caracters.");
+               }
+               //error(element);
+               return false;
+           }
+           return true;}
+          
+     function validarCIF () {
+           var element = document.getElementById("cif");
+           if (!element.checkValidity()){
+               if (element.validity.valueMissing){
+                   alert("Deus d'introduïr un CIF correcte.");
+               }
+               if (element.validity.patternMismatch){
+                   alert("El CIF es incorrecte.");
+               }
+               //error(element);
+               return false;
+           }
+           return true;}
+
+           function validarEmail () {
+           var element = document.getElementById("email");
+           if (!element.checkValidity()){
+               if (element.validity.valueMissing){
+                   alert("Deus d'introduïr un email correcte.");
+               }
+               if (element.validity.patternMismatch){
+                   alert("El email es incorrecte.");
+               }
+               //error(element);
+               return false;
+           }
+           return true;}
+
+        function validarPrivacitat () {
+           var element = document.getElementById("terminos");
+           if (!element.checked){
+              alert("Debes de aceptar las condiciones de privacidad");
+               return false;
+           }
+           console.log("Condiciones aceptadas");
+           return true;}
+
+    function validarClient(e) {
+    e.preventDefault();
+    elementDoc=document.getElementById("documento");
+    if ( valorRadio()&&validarNom() && validarPrivacitat()&& confirm("Confirma si vols enviar el formulari") ){
+        redireccionar();
+        return true;
+
+    }else{
+        console.log("El DNI es incorrecto")
+        return false;
+    }
+}
+
+function validarEmpresari(e) {
+    e.preventDefault();
+    if (validarPrivacitat () && validarCIF()&& confirm("Confirma si vols enviar el formulari") ){
+        redireccionar();
+        return true;
+
+    }else{
+        console.log("El DNI es incorrecto")
+        return false;
+    }
+}
 
     function redireccionar(){
         var selectpago = document.getElementById("opcionpago");
       var opcionSeleccionada = selectpago.options[selectpago.selectedIndex].value;
-        //alert(opcionSeleccionada);
+        alert(opcionSeleccionada);
       switch(opcionSeleccionada){
         case "mastercard":
         window.location.href = "mastercard.html";
@@ -236,6 +317,8 @@ function validar(e) {
         default:
             break;
     }
+
+    
 
 }
 </script>
