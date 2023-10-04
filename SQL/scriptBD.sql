@@ -27,6 +27,7 @@ CREATE TABLE IF NOT EXISTS vehiculo (
     id_comanda INT,
     id_proveedor INT,
     INDEX (matricula)
+	FOREIGN KEY(id_comanda) REFERENCES comanda(id)
 );
 
 -- Crear una tabla "clients"
