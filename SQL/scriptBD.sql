@@ -22,9 +22,7 @@ CREATE TABLE IF NOT EXISTS vehicles (
     num_bastidor VARCHAR(50) NOT NULL,
     canvi_m VARCHAR(20) NOT NULL,
     preu_v DECIMAL(10, 2) NOT NULL,
-    preu_c DECIMAL(10, 2) NOT NULL,
-    id_comanda INT NOT NULL,
-    FOREIGN KEY (id_comanda) REFERENCES comanda(id)
+    preu_c DECIMAL(10, 2) NOT NULL
 );
 
 -- Crear una tabla "clients"
