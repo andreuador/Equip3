@@ -20,6 +20,21 @@ CREATE TABLE usuarios (
 	correo_electronico VARCHAR(255) NOT NULL
 );
 
+CREATE TABLE Proveedor (
+	ID INT PRIMARY KEY AUTO_INCREMENT,
+	DNI VARCHAR(255),
+	documento_LOPD VARCHAR(255),
+	NIF_Gerente VARCHAR(255),
+	documento_constitucion VARCHAR(255),
+	CIF VARCHAR(255),
+	certificado_cuenta_bancaria VARCHAR(255),
+	domicilio_completo VARCHAR(255),
+	telefono VARCHAR(20),
+	nombre VARCHAR(255),
+	correo_electronico VARCHAR(255)
+);
+
+
 CREATE TABLE Modelo (
     ID INT PRIMARY KEY,
     nombre VARCHAR(255),
@@ -31,13 +46,15 @@ CREATE TABLE Modelo (
 CREATE TABLE Marca (
     ID INT PRIMARY KEY,
     nombre VARCHAR(255),
-    FOREIGN KEY (ID) REFERENCES Modelo(ID)
+    id_modelo INT,
+    FOREIGN KEY (id_modelo) REFERENCES Modelo(ID)
 );
 
 -- Crear una tabla "vehiculo"
 CREATE TABLE IF NOT EXISTS vehiculo (
-	matricula VARCHAR(10) PRIMARY KEY,
-	color VARCHAR(50) NOT NULL,
+    ID INT PRIMARY KEY AUTO_INCREMENT,
+    matricula VARCHAR(10),
+    color VARCHAR(50) NOT NULL,
     danos TEXT,
     modelo INT,
     tipo_carburante VARCHAR(50) NOT NULL,
@@ -51,9 +68,13 @@ CREATE TABLE IF NOT EXISTS vehiculo (
     precio_venta DECIMAL(10, 2) NOT NULL,
     precio_compra DECIMAL(10, 2) NOT NULL,
     id_comanda INT,
+    id_proveedor INT,
     FOREIGN KEY (modelo) REFERENCES Modelo(ID),
-    FOREIGN KEY (marca) REFERENCES Marca(ID)
+    FOREIGN KEY (marca) REFERENCES Marca(ID),
+    FOREIGN KEY (id_proveedor) REFERENCES Proveedor(ID),
+	INDEX (matricula)
 );
+
 
 -- Crear una tabla "comanda"
 CREATE TABLE IF NOT EXISTS comanda (
@@ -75,6 +96,8 @@ CREATE TABLE IF NOT EXISTS factura(
 	matricula_vehiculo VARCHAR(10),
 	FOREIGN KEY (dni_usuario) REFERENCES usuarios(DNI),
 	FOREIGN KEY (id_comanda) REFERENCES comanda(id),
+	FOREIGN KEY (matricula_vehiculo) REFERENCES vehiculo (matricula)
+
 );
 
 CREATE TABLE particular (
@@ -135,31 +158,19 @@ CREATE TABLE administrativo (
 	FOREIGN KEY (id) REFERENCES usuarios(id)
 );
 
-CREATE TABLE Proveedor (
-	ID INT PRIMARY KEY,
-	DNI VARCHAR(255),
-	documento_LOPD VARCHAR(255),
-	NIF_Gerente VARCHAR(255),
-	documento_constitucion VARCHAR(255),
-	CIF VARCHAR(255),
-	certificado_cuenta_bancaria VARCHAR(255),
-	domicilio_completo VARCHAR(255),
-	telefono VARCHAR(20),
-	nombre VARCHAR(255),
-	correo_electronico VARCHAR(255)
-);
+
 
 CREATE TABLE DocumentoVehiculo (
 	ID INT PRIMARY KEY,
 	tipo_documento VARCHAR(255),
 	ruta_documento VARCHAR(255),
-	matricula_vehiculo VARCHAR(10),
-	FOREIGN KEY (matricula_vehiculo) REFERENCES vehiculo(matricula)
+	id_vehiculo int,
+	FOREIGN KEY (id_vehiculo) REFERENCES vehiculo(ID)
 );
 
 CREATE TABLE Imagen (
 	ID INT PRIMARY KEY,
 	ruta VARCHAR(255),
-	matricula_vehiculo VARCHAR(10),
-	FOREIGN KEY (matricula_vehiculo) REFERENCES vehiculo(matricula)
+	id_vehiculo INT,
+	FOREIGN KEY (id_vehiculo) REFERENCES vehiculo(ID)
 );
