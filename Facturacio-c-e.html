@@ -68,9 +68,9 @@
 
 
 <script>
-   
+      window.onload=main;
     function main(){
-    window.onload=main;
+ 
     document.getElementById("pagar").addEventListener("click",validarClient);
     
     document.getElementById("tipoDoc").addEventListener("change",valorRadio);
@@ -83,7 +83,7 @@
 
 
     function cambiaraClient(){
-        window.onload=main;
+       
         var formulario=document.getElementById("formulariocliente");
         formulario.innerHTML="<div id="+"formulariocliente+"+">"+
     "<h1>Datos del cliente</h1>"+
@@ -131,7 +131,6 @@ document.getElementById("pagar").addEventListener("click",validarClient);
     }
 
     function cambiaraEmpresa(){
-        window.onload=main;
         var formulario=document.getElementById("formulariocliente");
         formulario.innerHTML="<div id="+"formularioempresa+"+">"+
     "<h1>Datos de la empresa</h1>"+
